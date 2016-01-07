@@ -4,7 +4,31 @@
 
 <dom-module id="pd-dashboard">
     <template>
-        <pd-drawer></pd-drawer>
+        <pd-drawer>
+            <div class="logo">
+                Logo Here
+            </div>
+            <div class="left-menu p-t-1">
+                <pd-list-item position="left" icon="home" url="#!">
+                    Home
+                </pd-list-item>
+                <pd-list-item position="left" icon="account-box" url="#!/profile">
+                    Profile
+                </pd-list-item>
+                <pd-list-item position="left" icon="view-module" url="#!/staff">
+                    Staff
+                </pd-list-item>
+                <pd-list-item position="left" icon="exit-to-app" url="#!/auth/logout">
+                    Log out
+                </pd-list-item>
+            </div>
+            <div class="right-menu">
+                Right menu goes in here
+            </div>
+            <div class="left-menu">
+                Left menu goes in here
+            </div>
+        </pd-drawer>
     </template>
 </dom-module>
 
