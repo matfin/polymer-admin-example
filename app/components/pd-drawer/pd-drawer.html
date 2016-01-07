@@ -1,0 +1,34 @@
+<dom-module id="pd-drawer">
+    <template>
+        <p>
+            LeftShow:<input type="text" value="{{leftShow::input}}" /></p>
+        </p>
+         <p>
+            RightShow:<input type="text" value="{{rightShow::input}}" /></p>
+        </p>
+        <p>
+            The value of leftShow is: <span>{{leftShow}}</span>
+        </p>
+        <p>
+            The value of rightShow is: <span>{{rightShow}}</span>
+        </p>
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    Polymer({
+        is: 'pd-drawer',
+        properties: {
+            leftShow: {
+                type: Boolean,
+                value: true,
+                notify: true
+            },
+            rightShow: {
+                type: Boolean,
+                value: true,
+                notify: true
+            }
+        }
+    });
+</script>
