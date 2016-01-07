@@ -1,0 +1,9 @@
+{
+    "version": "1.0.0",
+    "name": "PolymerAdminProject",
+    "private": true,
+    "devDependencies": {
+        "express": "~4.12.4"
+    },
+    "dependencies": {}
+}
