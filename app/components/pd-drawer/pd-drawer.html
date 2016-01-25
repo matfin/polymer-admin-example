@@ -2,6 +2,13 @@
 
 <dom-module id="pd-drawer">
     <link rel="import" type="css" href="../../../app/components/pd-drawer/pd-drawer.css" />
+
+    <style>
+        .main-site {
+            background-color: var(--primary-color-dark);
+        }
+    </style>
+
     <template>
         <div id="drawer" class$="{{mainClasses}}">
             <div class="c-p paper-toolbar p-l-05 p-r-05 shadow-bottom">
@@ -17,6 +24,9 @@
             </div>
             <div class="main c-n-dark">
                 <div class="main-section">
+                    <div class="main-site">
+                        This is the main site
+                    </div>
                     <!-- Main content will go in here -->
                     <content select="#main"></content>
                 </div>
@@ -132,7 +142,7 @@
             this.mobileModeCheck();
         },
         ready: function() {
-            
+
         }
     });
 </script>
