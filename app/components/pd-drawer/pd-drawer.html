@@ -24,9 +24,6 @@
             </div>
             <div class="main c-n-dark">
                 <div class="main-section">
-                    <div class="main-site">
-                        This is the main site
-                    </div>
                     <!-- Main content will go in here -->
                     <content select="#main"></content>
                 </div>
@@ -131,10 +128,17 @@
             this.leftShow = false;
             this.rightShow = !this.rightShow;
         },
+        closeDrawers: function() {
+            this.toggleLeft();
+            this.toggleRight();
+        },
         pinLeft: function() {
             this.leftLocked = !this.leftLocked;
             this.closeDrawers();
             this.mobileModeCheck();
+        },
+        mobileModeCheck: function() {
+            return window.innerWidth >= 800;
         },
         pinRight: function() {
             this.rightLocked = !this.rightLocked;
