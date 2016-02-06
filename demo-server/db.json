@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "matt",
+      "password": "polymer"
+    },
+    {
+      "id": 2,
+      "username": "anna",
+      "password": "polymer"
+    }
+  ],
+  "friends": [
+    {
+      "username": "matt",
+      "friends": [
+        {
+          "name": "Anna Christoffer",
+          "status": "Available",
+          "username": "anna"
+        },
+        {
+          "name": "Ruairi Galavan",
+          "status": "Available",
+          "username": "ruairi"
+        },
+        {
+          "name": "Li Jeanne Huss",
+          "status": "Available",
+          "username": "li"
+        }
+      ]
+    }
+  ],
+  "threads": [
+    {
+      "user": "matt",
+      "message": "This is a message from Matt",
+      "dateTime": "February 4, 2016 17:13:00"
+    },
+    {
+      "user": "anna",
+      "message": "This is a message from Anna",
+      "dateTime": "February 3, 2016 14:13:00"
+    }
+  ],
+  "profiles": [
+    {
+      "firstName": "Anna",
+      "lastName": "Christoffer",
+      "type": "itadmin",
+      "username": "anna",
+      "active": "Inactive",
+      "id": 2,
+      "userId": 2,
+      "selected": false
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Finucane",
+      "type": "teacher",
+      "username": "matt",
+      "active": "Inactive",
+      "id": 1,
+      "userId": 1,
+      "selected": false
+    }
+  ]
+}

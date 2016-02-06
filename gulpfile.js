@@ -12,6 +12,9 @@ gulp.task('sass', function() {
     gulp.src('app/css/skins/default/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('app/css/skins/default'));
+    gulp.src('app/pages/auth/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('app/pages/auth'));
 });
 
 gulp.task('insert', function() {

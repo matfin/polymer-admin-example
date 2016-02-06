@@ -30,7 +30,7 @@
                 <pd-list-item position="left" icon="view-module" url="#!/staff">
                     Staff
                 </pd-list-item>
-                <pd-list-item position="left" icon="exit-to-app" url="#!/auth/logout">
+                <pd-list-item position="left" icon="exit-to-app" url="/auth/logout">
                     Log out
                 </pd-list-item>
             </div>
@@ -62,18 +62,16 @@
                 params      = page.split('?')[1],
                 pageName    = page.split('?')[0];
 
-            if (pageName === '') pageName = 'home';
+            if (pageName === '/' || pageName === '') pageName = 'home';
 
-            this.$.ajax.url = 'app/pages/' + pageName + '/' + pageName + '.html?' + params
+            this.$.ajax.url = 'app/pages/' + pageName + '/' + pageName + '.html?' + params; 
             this.$.ajax.generateRequest(); 
         },
         ready: function() {
             var self = this;
             self.$.ajax.addEventListener('response', function(response) {
                 try {
-                    
                     self.async(function() {
-
                         var links = response.detail.response.head.querySelectorAll('link');
                         for(var i = 0; i < links.length; i++) {
                             if(!window.document.head.innerHTML.indexOf(links[i].href.toLowerCase()) !== -1) {
