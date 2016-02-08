@@ -138,10 +138,21 @@
         ready: function() {
             var self = this;
             self.searchProfiles();
+            self.$.search.addEventListener('search', function(event) {
+                self.searchProfiles(event.detail);
+            });
+            self.$.search.addEventListener('searchClosed', function(event) {
+                self.searchProfiles();
+            });
         },
-        searchProfiles: function() {
+        searchProfiles: function(search) {
             var self = this;
-            self.$.searchProfilesRequest.params = [];
+            if(search != null) {
+                self.$.searchProfilesRequest.params['username'] = search;
+            }
+            else {
+                self.$.searchProfilesRequest.params = [];
+            }
             self.$.searchProfilesRequest.generateRequest();
         },
         searchProfilesCallback: function(response) {
