@@ -31,6 +31,16 @@
           "username": "li"
         }
       ]
+    },
+    {
+      "username": "anna",
+      "friends": [
+        {
+          "name": "Matt Finucane",
+          "status": "Available",
+          "username": "matt"
+        }
+      ]
     }
   ],
   "threads": [

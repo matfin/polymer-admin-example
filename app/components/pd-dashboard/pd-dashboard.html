@@ -35,7 +35,11 @@
                 </pd-list-item>
             </div>
             <div class="right-menu">
-                Right menu goes in here
+                <template is="dom-repeat" items="{{friends}}">
+                    <pd-list-item position="left" icon="face" url="{{item.url}}">
+                        {{item.name}}
+                    </pd-list-item>
+                </template>
             </div>
             <div id="main">
                 Main items will go in here
@@ -43,7 +47,12 @@
         </pd-drawer>
         <pd-flatiron-director route="{{route}}">
         </pd-flatiron-director>
-        <iron-ajax id="ajax" url="" handle-as="document"></iron-ajax>
+        <iron-ajax id="ajax" url="" handle-as="document">
+        </iron-ajax>
+        <iron-ajax id="getProfileRequest" url="http://localhost:5000/profile" method="GET" handle-as="json" on-response="getProfileCallback" with-credentials="true" auto>
+        </iron-ajax>
+        <iron-ajax id="getFriendsRequest" url="http://localhost:5000/friends" method="GET" handle-as="json" on-response="getFriendsCallback" with-credentials="true">
+        </iron-ajax>
     </template>
 </dom-module>
 
@@ -55,7 +64,25 @@
                 type: String,
                 notify: true,
                 observer: 'routeChanged'
+            },
+            friends: {
+                type: Array,
+                notify: true
             }
+        },
+        getProfileCallback: function(response) {
+            this.getFriends(response.detail.response.username);
+        },
+        getFriends: function(username) {
+            this.$.getFriendsRequest.params['username'] = username;
+            this.$.getFriendsRequest.generateRequest();
+        },
+        getFriendsCallback: function(response) {
+            var self = this;
+            self.friends = response.detail.response[0].friends;
+            self.friends.forEach(function(friend) {
+                friend.url = '#!/thread?username=' + friend.username;
+            });
         },
         routeChanged: function(newValue, oldValue) {
             var page        = newValue.replace('!', ''),

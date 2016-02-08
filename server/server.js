@@ -9,6 +9,8 @@ var express         = require('../node_modules/express'),
     router          = jsonserver.router('demo-server/db.json'),
     cookieParser    = require('../node_modules/cookie-parser'),
     session         = require('../node_modules/express-session'),
+    http            = require('http').Server(app);
+    io              = require('socket.io')(http);
     http;
 
 /**
@@ -96,7 +98,6 @@ app.use(express.static(path.join(__dirname, '../')));
 /**
  *  Kicking off the server on port 8080
  */
-http = require('http').Server(app);
 http.listen(8080);
 
 /**
@@ -105,3 +106,18 @@ http.listen(8080);
 server.use(jsonserver.defaults);
 server.use(router);
 server.listen(5000);
+
+/**
+ *  Real time with Socket.io
+ */
+io.on('connection', function(socket) {
+    socket.on('chat message', function(msg) {
+        msg = JSON.parse(msg);
+        io.sockets.in(msg.room).emit('private message', JSON.stringify(msg));
+    });
+    socket.on('subscribe', function(msg) {
+        socket.username = msg.user;
+        socket.room = msg.room;
+        socket.join(msg.room);
+    });
+});
