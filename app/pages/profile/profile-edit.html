@@ -7,22 +7,23 @@
 <dom-module id="profile-edit">
     <template>
         <pd-card head="Profile Details">
-            <paper-input label="First Name" value="{{profile.firstName}}" class="m-l-1 m-r-1 m-t-1 m-b-1">
+            <paper-input label="First Name" value="{{profile.firstName}}" class="m-b-1">
             </paper-input>
-            <paper-input label="Last Name" value="{{profile.lastName}}" class="m-l-1 m-r-1 m-t-1 m-b-1">
+            <paper-input label="Last Name" value="{{profile.lastName}}" class="m-b-1">
             </paper-input>
-            <paper-input label="username" disabled value="{{profile.username}}" class="m-l-1 m-r-1 m-t-1 m-b-1">
+            <paper-input label="username" disabled value="{{profile.username}}" class="m-b-1">
             </paper-input>
 
-            <pd-select floatingLabel="true" label="type" value="{{profile.type}}" options='["itadmin", "teacher", "principal"]'>
+            <pd-select floatingLabel="true" label="type" class="m-b-1 d-block" value="{{profile.type}}" options='["itadmin", "teacher", "principal"]'>
             </pd-select>
-            <pd-select floatingLabel="true" label="status" value="{{profile.status}}" options='["Active", "Inactive"]'>
+            <pd-select floatingLabel="true" label="status" class="m-b-1 d-block" value="{{profile.status}}" options='["Active", "Inactive"]'>
             </pd-select>
 
-            <paper-button raised colored tabindex="0" class="f-right m-0-5 m-l-0" on-tap="saveProfile">
+            <paper-button raised colored tabindex="0" class="f-right m-t-2 m-l-0" on-tap="saveProfile">
                 Save
             </paper-button>
-            
+            <div class="clearfix">
+            </div>
         </pd-card>
         <paper-toast id="toast" text="">
         </paper-toast>

@@ -65,6 +65,14 @@
       "id": 1,
       "userId": 1,
       "selected": false
+    },
+    {
+      "firstName": "Dave",
+      "lastName": "Smullen",
+      "userName": "dave",
+      "type": "teacher",
+      "active": "Active",
+      "id": 3
     }
   ]
 }

@@ -273,6 +273,9 @@
 .d-inline-block {
   display: inline-block; }
 
+.d-block {
+  display: block; }
+
 html /deep/ .hidden, .hidden {
   display: none; }
 

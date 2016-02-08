@@ -60,7 +60,7 @@ table {
 }
 
 .toggled .edit-panel {
-    transform: translate(0);
+    transform: translateX(0);
 }
 
 .closeBtn {
