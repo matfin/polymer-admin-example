@@ -1,0 +1,96 @@
+<link rel="import" href="../../../../../bower_components/paper-button/paper-button.html" />
+<link rel="import" href="../../../../../bower_components/paper-toast/paper-toast.html" />
+<link rel="import" href="../../../../../bower_components/paper-input/paper-input.html" />
+<link rel="import" href="../../../../../bower_components/paper-icon-button/paper-icon-button.html" />
+<link rel="import" href="../../../../../bower_components/iron-icons/editor-icons.html" />
+<link rel="import" href="../../../../../bower_components/paper-checkbox/paper-checkbox.html" />
+
+<link rel="import" href="../../../../../app/components/pd-card/pd-card.html" />
+<link rel="import" href="../../../../../app/components/pd-select/pd-select.html" />
+<link rel="import" href="../../../../../app/components/pd-search/pd-search.html" />
+
+<dom-module id="staff-list">
+    <link rel="stylesheet" href="../../pages/staff/staff.css" />
+    <style type="text/css">
+        .edit-panel {
+            background-color: var(--color-neutral-text-bg);
+            padding: 1em;
+        }
+        .tbody .tr:nth-child(even) {
+            background-color: var(--color-neutral);
+        }
+    </style>
+    <template>
+        <pd-card head="Staff List">
+            <div class="table">
+                <div class="thead">
+                    <div class="th">
+                        <div class="td">
+                        </div>
+                        <div class="td">
+                            #
+                        </div>
+                        <div class="td">
+                            Username
+                        </div>
+                        <div class="td">
+                            Type
+                        </div>
+                        <div class="td">
+                        </div>
+                    </div>
+                </div>
+                <div class="tbody">
+                    <template is="dom-repeat" items="{{profiles}}">
+                        <div class="tr">
+                            <div class="td">
+                                <paper-checkbox checked="{{item.selected}}">
+                                </paper-checkbox>
+                            </div>
+                            <div class="td">
+                                {{item.id}}
+                            </div>
+                            <div class="td">
+                                {{item.username}}
+                            </div>
+                            <div class="td">
+                                {{item.type}}
+                            </div>
+                            <div class="td t-center">
+                                <paper-icon-button icon="editor:mode-edit" data-id$="{{item.id}}" on-tap="openPanel">
+                                </paper-icon-button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </pd-card>
+        <iron-ajax id="searchProfilesRequest" url="http://localhost:5000/profiles" method="GET" handle-as="json" on-response="searchProfilesCallback" with-credentials="true">
+        </iron-ajax>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'staff-list',
+        properties: {
+        },
+        ready: function() {
+            var self = this;
+            self.searchProfiles();
+        },
+        searchProfiles: function() {
+            var self = this;
+            self.$.searchProfilesRequest.params = [];
+            self.$.searchProfilesRequest.generateRequest();
+        },
+        searchProfilesCallback: function(response) {
+            this.profiles = response.detail.response;
+            for(var i = 0; i < this.profiles.length; i++) {
+                this.profiles[i].selected = false;
+            }
+        }
+    });
+</script>
