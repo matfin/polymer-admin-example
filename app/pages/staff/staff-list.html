@@ -28,7 +28,7 @@
                 </paper-input>
                 <paper-input class="m-b-1 d-block" floatingLabel="true" label="Last Name" value="{{editModel.lastName}}">
                 </paper-input>
-                <paper-input class="m-b-1 d-block" floatingLabel="true" label="Username" value="{{editModel.userName}}">
+                <paper-input class="m-b-1 d-block" floatingLabel="true" label="Username" value="{{editModel.username}}">
                 </paper-input>
                 <pd-select class="m-b-1 d-block" floatingLabel="true" label="Type" value="{{editModel.type}}" options='["itadmin", "teacher", "principle"]'>
                 </pd-select>
@@ -50,6 +50,10 @@
                 <div class="f-right">
                     <paper-icon-button icon="add" on-tap="openPanel">
                     </paper-icon-button>
+                    <paper-icon-button icon="delete" on-tap="deleteProfiles">
+                    </paper-icon-button>
+                    <pd-search id="search" class="f-left">
+                    </pd-search>
                 </div>
             </div>
             <div class="table">
@@ -107,6 +111,9 @@
         <iron-ajax id="saveProfileRequest" url="http://localhost:5000/profiles" method="POST" handle-as="json" on-response="saveProfileCallback" with-credentials="true">
         </iron-ajax>
 
+        <iron-ajax id="deleteProfilesRequest" url="http://localhost:5000/profiles" method="DELETE" handle-as="json" on-response="deleteProfilesCallback" with-credentials="true">
+        </iron-ajax>
+
     </template>
 </dom-module>
 
@@ -146,13 +153,28 @@
         openPanel: function(e) {
             var self = this;
             self.panelToggle = 'toggled';
-            self.editModel = {
-                firstName: '',
-                lastName: '',
-                username: '',
-                type: '',
-                active: ''
-            };
+
+            var itemClicked = e.detail.sourceEvent.target.parentNode;
+            var id = itemClicked.getAttribute('data-id');
+
+            for(var i = 0; i < self.profiles.length; i++) {
+                if(self.profiles[i].id === parseInt(id)) {
+                    self.editModel = self.profiles[i];
+                    console.log({
+                        found: self.editModel
+                    });
+                }
+            }
+
+            if(id === null) {
+                self.editModel = {
+                    firstName: '',
+                    lastName: '',
+                    username: '',
+                    type: '',
+                    active: ''
+                };
+            }
         },
         closePanel: function(e) {
             this.panelToggle = '';
@@ -164,6 +186,21 @@
         },
         saveProfileCallback: function(response) {
             this.$.toast.text = 'Profile Saved';
+            this.$.toast.show();
+            this.searchProfiles();
+            this.closePanel();
+        },
+        deleteProfiles: function() {
+            var self = this;
+            for(var i = 0; i < self.profiles.length; i++) {
+                if(self.profiles[i].selected) {
+                    self.$.deleteProfilesRequest.url = 'http://localhost:5000/profiles/' + self.profiles[i].id;
+                    self.$.deleteProfilesRequest.generateRequest();
+                }
+            }
+        },
+        deleteProfilesCallback: function() {
+            this.$.toast.text = 'Item Deleted';
             this.$.toast.show();
             this.searchProfiles();
             this.closePanel();

@@ -58,21 +58,13 @@
     },
     {
       "firstName": "Mattey",
-      "lastName": "Finucane Edited",
-      "type": "teacher",
+      "lastName": "Finucane Edited Again",
+      "type": "itadmin",
       "username": "matt",
       "active": "Inactive",
       "id": 1,
       "userId": 1,
       "selected": false
-    },
-    {
-      "firstName": "Dave",
-      "lastName": "Smullen",
-      "userName": "dave",
-      "type": "teacher",
-      "active": "Active",
-      "id": 3
     }
   ]
 }
