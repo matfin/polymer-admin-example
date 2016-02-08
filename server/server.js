@@ -52,6 +52,22 @@ server.post('/auth/login', function(req, res) {
 });
 
 /**
+ *  Get user profile data
+ */
+server.get('/profile', function(req, res) {
+    var userId  = req.signedCookies.usersession,
+        users   = router.db.object.profiles;
+
+    for(var i = 0; i < users.length; i++) {
+        if(users[i].userId === parseInt(userId)) {
+            res.send(JSON.stringify(users[i]));
+            return;
+        }
+    }
+    res.send();
+});
+
+/**
  *  Logout handler
  */
 app.get('/auth/logout', function(req, res){
