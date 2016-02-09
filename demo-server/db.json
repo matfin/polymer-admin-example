@@ -74,7 +74,8 @@
       "active": "Inactive",
       "id": 1,
       "userId": 1,
-      "selected": false
+      "selected": false,
+      "status": "Inactive"
     }
   ]
 }
