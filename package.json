@@ -17,7 +17,8 @@
         "vulcanize": "~1.4.2",
         "gulp-vulcanize": "~6.0.0",
         "gulp-minify-html": "~1.0.2",
-        "gulp-minify-inline": "~0.1.1"
+        "gulp-minify-inline": "~0.1.1",
+        "web-component-tester": "~3.3.10"
     },
     "dependencies": {}
 }
