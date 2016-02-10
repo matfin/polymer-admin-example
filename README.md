@@ -8,5 +8,5 @@ credentials: matt - polymer
 
 1.  `npm install`
 2.  `bower install`
-3.  `gulp sass`
+3.  `gulp`
 4.  `node server/server.js`
